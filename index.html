@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <!-- SEO & Meta Tags -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Personal Portfolio of a Web Developer showcasing accessible web applications, modern frontend projects, and technical skills.">
+  <meta name="author" content="Developer Name">
+  <meta name="robots" content="index, follow">
+  
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://www.example.com/index.html">
+
+  <!-- Open Graph Meta Tags for SEO/Social Sharing -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Portfolio | Web Developer & Frontend Specialist">
+  <meta property="og:description" content="Explore accessible, performant web applications built with modern Web Standards.">
+  <meta property="og:url" content="https://www.example.com/">
+
+  <!-- Page Title (SEO Best Practice) -->
+  <title>Home - Personal Portfolio | Web Developer</title>
+
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Accessible Skip Link for Keyboard Navigation (WCAG 2.4.1) -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- Header Section with Navigation -->
+  <header role="banner">
+    <div class="site-branding">
+      <a href="index.html" aria-label="Home - Developer Portfolio">
+        <strong>DevPortfolio</strong>
+      </a>
+    </div>
+
+    <!-- Main Navigation -->
+    <nav role="navigation" aria-label="Main Navigation">
+      <ul>
+        <li><a href="index.html" aria-current="page">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Main Content Landmark -->
+  <main id="main-content" tabindex="-1">
+    
+    <!-- Hero Section -->
+    <section aria-labelledby="hero-heading" class="hero">
+      <h1 id="hero-heading">Frontend Developer &amp; Accessibility Advocate</h1>
+      <p>Building accessible, responsive, and performance-first web experiences.</p>
+      <a href="projects.html" class="cta-button">Explore Projects</a>
+    </section>
+
+    <!-- Projects Section -->
+    <section aria-labelledby="projects-heading">
+      <h2 id="projects-heading">Featured Projects</h2>
+      
+      <div class="project-grid">
+        <!-- Project Article 1 -->
+        <article class="project-card">
+          <h3>E-Commerce Web Application</h3>
+          <p>A WCAG AA compliant online store designed with accessible components and full keyboard support.</p>
+          <a href="https://github.com/example/ecommerce" 
+             target="_blank" 
+             rel="noopener noreferrer" 
+             aria-label="View E-Commerce Web Application code on GitHub (opens in new tab)">
+            View on GitHub
+          </a>
+        </article>
+
+        <!-- Project Article 2 -->
+        <article class="project-card">
+          <h3>Task Management Dashboard</h3>
+          <p>An interactive productivity web app featuring focus management and ARIA live regions.</p>
+          <a href="https://github.com/example/task-dashboard" 
+             target="_blank" 
+             rel="noopener noreferrer" 
+             aria-label="View Task Management Dashboard code on GitHub (opens in new tab)">
+            View on GitHub
+          </a>
+        </article>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer Landmark -->
+  <footer role="contentinfo">
+    <p>&copy; 2026 Developer Name. All rights reserved.</p>
+    
+    <!-- Social Links Navigation -->
+    <nav aria-label="Social Profiles">
+      <ul>
+        <li><a href="https://github.com" target="_blank" rel="noopener noreferrer" aria-label="GitHub Profile (opens in new tab)">GitHub</a></li>
+        <li><a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Profile (opens in new tab)">LinkedIn</a></li>
+      </ul>
+    </nav>
+  </footer>
+
+</body>
+</html>

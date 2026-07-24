@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Get in touch with me regarding web development projects, consultations, or job opportunities.">
+  <link rel="canonical" href="https://www.example.com/contact.html">
+  <title>Contact - Personal Portfolio</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Skip Link -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- Header Navigation -->
+  <header role="banner">
+    <nav role="navigation" aria-label="Main Navigation">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="contact.html" aria-current="page">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Main Contact Area -->
+  <main id="main-content" tabindex="-1">
+    <section aria-labelledby="contact-heading">
+      <h1 id="contact-heading">Get in Touch</h1>
+      <p>Fill out the form below to discuss web development projects or inquiries.</p>
+
+      <!-- Fully Accessible, Tab-Navigable Contact Form -->
+      <form action="/submit-form" method="POST" novalidate>
+        
+        <!-- Field 1: Full Name -->
+        <div class="form-group">
+          <label for="full-name">Full Name <span class="required" aria-hidden="true">*</span></label>
+          <input 
+            type="text" 
+            id="full-name" 
+            name="full-name" 
+            required 
+            aria-required="true"
+            autocomplete="name">
+        </div>
+
+        <!-- Field 2: Email -->
+        <div class="form-group">
+          <label for="email-address">Email Address <span class="required" aria-hidden="true">*</span></label>
+          <input 
+            type="email" 
+            id="email-address" 
+            name="email-address" 
+            required 
+            aria-required="true"
+            aria-describedby="email-hint"
+            autocomplete="email">
+          <small id="email-hint" class="hint">Your email will only be used to reply to your message.</small>
+        </div>
+
+        <!-- Field 3: Subject -->
+        <div class="form-group">
+          <label for="subject">Subject</label>
+          <input 
+            type="text" 
+            id="subject" 
+            name="subject" 
+            autocomplete="off">
+        </div>
+
+        <!-- Field 4: Message -->
+        <div class="form-group">
+          <label for="message">Message <span class="required" aria-hidden="true">*</span></label>
+          <textarea 
+            id="message" 
+            name="message" 
+            rows="6" 
+            required 
+            aria-required="true"></textarea>
+        </div>
+
+        <!-- Form Submit Button -->
+        <button type="submit" class="submit-btn">Send Message</button>
+
+      </form>
+    </section>
+  </main>
+
+  <footer role="contentinfo">
+    <p>&copy; 2026 Developer Name. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>

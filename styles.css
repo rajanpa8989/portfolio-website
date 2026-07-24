@@ -1,0 +1,350 @@
+/* ==========================================================================
+   1. Design Tokens & CSS Variables
+   ========================================================================== */
+:root {
+  /* Color Palette (WCAG 2.1 AA Compliant Contrast Ratios) */
+  --primary: #2563eb;
+  --primary-hover: #1d4ed8;
+  --primary-light: #eff6ff;
+  --bg-main: #f8fafc;
+  --bg-surface: #ffffff;
+  --text-main: #0f172a;
+  --text-muted: #475569;
+  --border-color: #cbd5e1;
+  --focus-ring: #0284c7;
+  --danger: #dc2626;
+
+  /* Typography */
+  --font-sans: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+
+  /* Elevation & Borders */
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.08), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+  --shadow-hover: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.05);
+  --transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ==========================================================================
+   2. Global Resets & Base Styles
+   ========================================================================== */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--text-main);
+  background-color: var(--bg-main);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Base Link Styling */
+a {
+  color: var(--primary);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: var(--transition);
+}
+
+a:hover {
+  color: var(--primary-hover);
+}
+
+/* ==========================================================================
+   3. Accessibility Requirements (WCAG)
+   ========================================================================== */
+
+/* Skip Link for Keyboard Navigation */
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: 1rem;
+  background-color: var(--text-main);
+  color: var(--bg-surface);
+  padding: 0.75rem 1.25rem;
+  font-weight: 600;
+  border-radius: 0 0 var(--radius-sm) var(--radius-sm);
+  z-index: 9999;
+  text-decoration: none;
+  transition: top 0.2s ease;
+}
+
+.skip-link:focus {
+  top: 0;
+  outline: 3px solid var(--focus-ring);
+}
+
+/* Visible Focus Indicator (WCAG 2.4.7) */
+:focus-visible {
+  outline: 3px solid var(--focus-ring);
+  outline-offset: 3px;
+}
+
+/* ==========================================================================
+   4. Layout & Landmarks
+   ========================================================================== */
+
+header, main, footer {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 1.5rem 2rem;
+}
+
+main {
+  flex: 1;
+}
+
+/* Header & Navigation Bar */
+header[role="banner"] {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1.5rem;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.site-branding strong {
+  font-size: 1.5rem;
+  letter-spacing: -0.02em;
+  color: var(--text-main);
+}
+
+.site-branding a {
+  text-decoration: none;
+}
+
+nav[role="navigation"] ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+nav[role="navigation"] a {
+  text-decoration: none;
+  color: var(--text-muted);
+  font-weight: 500;
+  padding: 0.5rem 0.25rem;
+  border-bottom: 2px solid transparent;
+}
+
+nav[role="navigation"] a:hover {
+  color: var(--primary);
+}
+
+nav[role="navigation"] a[aria-current="page"] {
+  color: var(--primary);
+  font-weight: 700;
+  border-bottom-color: var(--primary);
+}
+
+/* Footer */
+footer[role="contentinfo"] {
+  border-top: 1px solid var(--border-color);
+  margin-top: 4rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  color: var(--text-muted);
+  font-size: 0.9375rem;
+}
+
+footer nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  gap: 1.25rem;
+}
+
+/* ==========================================================================
+   5. Page Sections & Card Components
+   ========================================================================== */
+
+.hero {
+  padding: 4rem 0 3rem;
+  max-width: 800px;
+}
+
+.hero h1 {
+  font-size: Clamp(2.25rem, 5vw, 3.25rem);
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+  color: var(--text-main);
+  margin-bottom: 1rem;
+}
+
+.hero p {
+  font-size: 1.25rem;
+  color: var(--text-muted);
+  margin-bottom: 2rem;
+}
+
+/* Responsive Project Grid */
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+/* Article Cards */
+.project-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 2rem;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: var(--transition);
+}
+
+.project-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-hover);
+  border-color: var(--primary);
+}
+
+.project-card h3 {
+  margin-top: 0;
+  font-size: 1.25rem;
+  color: var(--text-main);
+}
+
+.project-card p {
+  color: var(--text-muted);
+  margin-bottom: 1.5rem;
+}
+
+/* Buttons & CTA Links */
+.cta-button, .project-card a {
+  display: inline-block;
+  align-self: flex-start;
+  background-color: var(--primary);
+  color: #ffffff;
+  padding: 0.75rem 1.5rem;
+  font-weight: 600;
+  border-radius: var(--radius-sm);
+  text-decoration: none;
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition);
+}
+
+.cta-button:hover, .project-card a:hover {
+  background-color: var(--primary-hover);
+  color: #ffffff;
+}
+
+/* ==========================================================================
+   6. Form Components (Contact Page)
+   ========================================================================== */
+
+form {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 2.5rem;
+  box-shadow: var(--shadow-sm);
+  max-width: 650px;
+  margin-top: 2rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1.5rem;
+}
+
+label {
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: var(--text-main);
+}
+
+input[type="text"],
+input[type="email"],
+textarea {
+  width: 100%;
+  padding: 0.875rem 1rem;
+  font-size: 1rem;
+  font-family: inherit;
+  color: var(--text-main);
+  background-color: var(--bg-surface);
+  border: 1.5px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  transition: var(--transition);
+}
+
+input[type="text"]:hover,
+input[type="email"]:hover,
+textarea:hover {
+  border-color: var(--text-muted);
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+textarea:focus {
+  border-color: var(--primary);
+}
+
+.hint {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  margin-top: 0.375rem;
+}
+
+.required {
+  color: var(--danger);
+  font-weight: bold;
+}
+
+/* Form Submit Button */
+.submit-btn {
+  background-color: var(--primary);
+  color: #ffffff;
+  padding: 0.875rem 1.75rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: var(--transition);
+  box-shadow: var(--shadow-sm);
+}
+
+.submit-btn:hover {
+  background-color: var(--primary-hover);
+}
+
+/* ==========================================================================
+   7. Responsiveness
+   ========================================================================== */
+@media (max-width: 640px) {
+  header[role="banner"],
+  footer[role="contentinfo"] {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  form {
+    padding: 1.5rem;
+  }
+}
