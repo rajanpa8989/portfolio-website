@@ -1,20 +1,77 @@
 'use client';
 
 import React, { useState } from 'react';
-import { ExternalLink, Github, Layers, CheckCircle2, ShieldCheck, Hotel, Calendar, Users, Eye } from 'lucide-react';
+import {
+  ExternalLink,
+  Github,
+  CheckCircle2,
+  Hotel,
+  Calendar,
+  Users,
+  Eye,
+  Cpu,
+  Binary,
+  Layers,
+  Terminal,
+  Clock,
+  HardDrive,
+  GitBranch,
+} from 'lucide-react';
+
+interface ProjectModalData {
+  title: string;
+  category: string;
+  scope: string;
+  repoUrl: string;
+  tech: string[];
+  specs: { label: string; value: string }[];
+}
 
 export default function ProjectsSection() {
-  const [activeTab, setActiveTab] = useState<'overview' | 'features' | 'tech'>('overview');
-  const [previewOpen, setPreviewOpen] = useState(false);
+  const [modalProject, setModalProject] = useState<ProjectModalData | null>(null);
+
+  const osPlaygroundData: ProjectModalData = {
+    title: 'Operating System Playground',
+    category: 'ALGORITHMIC SIMULATION & SYSTEMS LAB',
+    scope:
+      'An interactive laboratory and deterministic simulation platform enabling students and engineers to understand core operating system internals — from preemptive CPU scheduling and memory translation to Banker’s deadlock safety.',
+    repoUrl: 'https://github.com/rajanpa8989/Operating-system-playground.git',
+    tech: ['Next.js 14', 'TypeScript', 'React 18', 'Tailwind CSS', 'Vitest', 'Zod', 'SVG Engines'],
+    specs: [
+      { label: 'SIMULATION MODEL', value: 'Deterministic, pure TypeScript client-side engines' },
+      { label: 'TEST COVERAGE', value: '35 Vitest unit tests covering preemption & deadlock safety' },
+      { label: 'CPU SCHEDULERS', value: 'FCFS, SJF, SRTF, Round Robin (Quantum), Priority' },
+      { label: 'MEMORY LAB', value: 'First/Best/Worst Fit, Paging MMU, FIFO/LRU/Optimal, Segmentation' },
+      { label: 'DEADLOCK ENGINE', value: "Banker's Algorithm, Safe Sequences, RAG DFS Cycle Detection" },
+      { label: 'REPOSITORY', value: 'github.com/rajanpa8989/Operating-system-playground' },
+    ],
+  };
+
+  const eliteHotelData: ProjectModalData = {
+    title: 'Elite Hotel Lucknow',
+    category: 'FULL-STACK HOSPITALITY WEB APPLICATION',
+    scope:
+      'A modern hospitality platform built to streamline room reservations, amenity exploration, and local inquiry management for visitors arriving in the historic city of Lucknow.',
+    repoUrl: 'https://github.com/rajanpa8989',
+    tech: ['React', 'JavaScript', 'Node.js', 'HTML5', 'CSS3', 'Git'],
+    specs: [
+      { label: 'ARCHITECTURE', value: 'Modular full-stack web application' },
+      { label: 'BOOKING ENGINE', value: 'Dynamic room catalog & stay date selection' },
+      { label: 'COMMUNICATION', value: 'Direct hospitality inquiry pipeline' },
+      { label: 'RESPONSIVENESS', value: 'Mobile-first fluid UI with accessible forms' },
+      { label: 'STATUS', value: 'Verified architecture and production ready' },
+      { label: 'AUTHOR', value: 'Rajan Patel (AIMT Lucknow)' },
+    ],
+  };
 
   return (
     <section
       id="projects"
       className="relative py-24 px-6 sm:px-8 border-t border-[#48E7A8]/10 bg-[#050A09]/70"
     >
-      <div className="max-w-5xl mx-auto">
+      <div className="max-w-5xl mx-auto space-y-16">
         {/* Section Header */}
-        <div className="mb-14">
+        <div>
           <div className="flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-[#48E7A8] mb-2">
             <span>03</span>
             <span className="text-[#48E7A8]/40">//</span>
@@ -25,13 +82,15 @@ export default function ProjectsSection() {
           </h2>
           <div className="mt-2 w-16 h-[2px] bg-[#48E7A8]/40" />
           <p className="mt-3 font-mono text-xs text-[#71877C]">
-            // FEATURED ARCHITECTURAL WORK AND PRODUCTION APPLICATIONS
+            // FEATURED ARCHITECTURAL WORK, SIMULATION ENGINES &amp; PRODUCTION APPLICATIONS
           </p>
         </div>
 
-        {/* Featured Project: ELITE HOTEL LUCKNOW */}
+        {/* ========================================================================= */}
+        {/* PROJECT 1: ELITE HOTEL LUCKNOW                                            */}
+        {/* ========================================================================= */}
         <div className="relative rounded-2xl bg-[#08120F]/95 border border-[#48E7A8]/20 overflow-hidden shadow-2xl blueprint-corner blueprint-corner-tl blueprint-corner-br">
-          {/* Top Bar / Project Identification */}
+          {/* Top Bar */}
           <div className="flex flex-wrap items-center justify-between gap-4 px-6 sm:px-8 py-4 border-b border-[#48E7A8]/15 bg-[#050A09]/80 font-mono text-xs">
             <div className="flex items-center gap-3">
               <span className="inline-block w-2.5 h-2.5 rounded-full bg-[#48E7A8]" />
@@ -47,7 +106,7 @@ export default function ProjectsSection() {
           </div>
 
           <div className="p-6 sm:p-8 lg:p-10 space-y-8">
-            {/* Project Title and Header */}
+            {/* Project Header */}
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 pb-6 border-b border-[#48E7A8]/10">
               <div>
                 <h3 className="font-sans font-bold text-2xl sm:text-3xl lg:text-4xl text-[#F2F5F3] tracking-tight mb-2">
@@ -70,24 +129,23 @@ export default function ProjectsSection() {
                   <span>Repository</span>
                 </a>
                 <button
-                  onClick={() => setPreviewOpen(true)}
+                  onClick={() => setModalProject(eliteHotelData)}
                   className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-[#48E7A8] text-[#050A09] text-xs font-mono font-semibold hover:bg-[#63F0B9] transition-all shadow-[0_0_15px_rgba(72,231,168,0.25)]"
                 >
                   <Eye size={15} />
-                  <span>Preview UI</span>
+                  <span>Inspect Spec</span>
                 </button>
               </div>
             </div>
 
-            {/* Interactive Architecture & Showcase Window */}
+            {/* Architecture Graphic */}
             <div className="relative rounded-xl border border-[#48E7A8]/20 bg-[#050A09] overflow-hidden">
-              {/* Window Header */}
               <div className="flex items-center justify-between px-4 py-2.5 bg-[#08120F] border-b border-[#48E7A8]/15 font-mono text-[11px] text-[#71877C]">
                 <div className="flex items-center gap-2">
                   <span className="w-2.5 h-2.5 rounded-full bg-[#15966C]/60" />
                   <span className="w-2.5 h-2.5 rounded-full bg-[#48E7A8]/40" />
                   <span className="w-2.5 h-2.5 rounded-full bg-[#63F0B9]/30" />
-                  <span className="ml-2 text-[#B8C7C0]">elite-hotel-lucknow // interface-spec</span>
+                  <span className="ml-2 text-[#B8C7C0]">elite-hotel-lucknow // system-spec</span>
                 </div>
                 <div className="hidden sm:flex items-center gap-3">
                   <span className="text-[#48E7A8]">HTTPS // SECURE</span>
@@ -95,9 +153,7 @@ export default function ProjectsSection() {
                 </div>
               </div>
 
-              {/* Interactive Showcase Graphic */}
               <div className="p-6 sm:p-8 bg-gradient-to-b from-[#08120F]/60 to-[#050A09] grid grid-cols-1 md:grid-cols-3 gap-4">
-                {/* Visual Card 1: Booking Flow */}
                 <div className="p-4 rounded-lg bg-[#08120F] border border-[#48E7A8]/15 space-y-3">
                   <div className="flex items-center justify-between text-[#48E7A8]">
                     <Hotel size={18} />
@@ -114,7 +170,6 @@ export default function ProjectsSection() {
                   </div>
                 </div>
 
-                {/* Visual Card 2: Hospitality Details */}
                 <div className="p-4 rounded-lg bg-[#08120F] border border-[#48E7A8]/15 space-y-3">
                   <div className="flex items-center justify-between text-[#48E7A8]">
                     <Calendar size={18} />
@@ -131,7 +186,6 @@ export default function ProjectsSection() {
                   </div>
                 </div>
 
-                {/* Visual Card 3: Guest Communication */}
                 <div className="p-4 rounded-lg bg-[#08120F] border border-[#48E7A8]/15 space-y-3">
                   <div className="flex items-center justify-between text-[#48E7A8]">
                     <Users size={18} />
@@ -150,9 +204,8 @@ export default function ProjectsSection() {
               </div>
             </div>
 
-            {/* Structured Editorial Specifications */}
+            {/* Specifications */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-2">
-              {/* Problem Addressed */}
               <div className="space-y-2">
                 <span className="font-mono text-xs text-[#48E7A8] uppercase tracking-wider">
                   01 / Problem Addressed
@@ -162,7 +215,6 @@ export default function ProjectsSection() {
                 </p>
               </div>
 
-              {/* Technical Implementation */}
               <div className="space-y-2">
                 <span className="font-mono text-xs text-[#48E7A8] uppercase tracking-wider">
                   02 / Implementation
@@ -172,7 +224,6 @@ export default function ProjectsSection() {
                 </p>
               </div>
 
-              {/* Verified Tech Stack */}
               <div className="space-y-2">
                 <span className="font-mono text-xs text-[#48E7A8] uppercase tracking-wider">
                   03 / Tech Stack
@@ -190,7 +241,7 @@ export default function ProjectsSection() {
               </div>
             </div>
 
-            {/* Implemented Features List */}
+            {/* Features */}
             <div className="pt-6 border-t border-[#48E7A8]/10">
               <h4 className="font-mono text-xs text-[#71877C] uppercase tracking-wider mb-4">
                 // IMPLEMENTED SYSTEM FEATURES
@@ -218,10 +269,203 @@ export default function ProjectsSection() {
             </div>
           </div>
         </div>
+
+        {/* ========================================================================= */}
+        {/* PROJECT 2: OPERATING SYSTEM PLAYGROUND                                   */}
+        {/* ========================================================================= */}
+        <div className="relative rounded-2xl bg-[#08120F]/95 border border-[#48E7A8]/20 overflow-hidden shadow-2xl blueprint-corner blueprint-corner-tl blueprint-corner-br">
+          {/* Top Bar */}
+          <div className="flex flex-wrap items-center justify-between gap-4 px-6 sm:px-8 py-4 border-b border-[#48E7A8]/15 bg-[#050A09]/80 font-mono text-xs">
+            <div className="flex items-center gap-3">
+              <span className="inline-block w-2.5 h-2.5 rounded-full bg-[#63F0B9]" />
+              <span className="text-[#63F0B9] font-semibold tracking-wider">
+                FEATURED ARCHITECTURE // 02
+              </span>
+            </div>
+            <div className="flex items-center gap-3 text-[#71877C]">
+              <span>CATEGORY: SYSTEMS &amp; SIMULATION</span>
+              <span>•</span>
+              <span className="text-[#48E7A8]">35 VITEST TESTS PASSING</span>
+            </div>
+          </div>
+
+          <div className="p-6 sm:p-8 lg:p-10 space-y-8">
+            {/* Project Header */}
+            <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 pb-6 border-b border-[#48E7A8]/10">
+              <div>
+                <div className="inline-flex items-center gap-2 px-2.5 py-0.5 rounded text-[10px] font-mono text-[#48E7A8] bg-[#15966C]/15 border border-[#48E7A8]/25 mb-2">
+                  <Terminal size={12} />
+                  <span>INTERACTIVE OS LABORATORY &amp; ALGORITHM SIMULATOR</span>
+                </div>
+                <h3 className="font-sans font-bold text-2xl sm:text-3xl lg:text-4xl text-[#F2F5F3] tracking-tight mb-2">
+                  OPERATING SYSTEM PLAYGROUND
+                </h3>
+                <p className="font-sans text-sm sm:text-base text-[#B8C7C0] max-w-2xl">
+                  A high-craft, laboratory-grade interactive platform enabling students and developers to experiment with core OS algorithms: preemptive CPU scheduling, memory management, and deadlock resolution through real-time visualizations.
+                </p>
+              </div>
+
+              {/* Action Links */}
+              <div className="flex items-center gap-3 self-start md:self-center shrink-0">
+                <a
+                  href="https://github.com/rajanpa8989/Operating-system-playground.git"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-[#050A09] border border-[#48E7A8]/30 text-xs font-mono text-[#F2F5F3] hover:text-[#48E7A8] hover:border-[#48E7A8] transition-all"
+                >
+                  <Github size={15} />
+                  <span>GitHub Repository</span>
+                </a>
+                <button
+                  onClick={() => setModalProject(osPlaygroundData)}
+                  className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-[#48E7A8] text-[#050A09] text-xs font-mono font-semibold hover:bg-[#63F0B9] transition-all shadow-[0_0_15px_rgba(72,231,168,0.25)]"
+                >
+                  <Eye size={15} />
+                  <span>Inspect Spec</span>
+                </button>
+              </div>
+            </div>
+
+            {/* Architecture Graphic / Interactive Modules Grid */}
+            <div className="relative rounded-xl border border-[#48E7A8]/20 bg-[#050A09] overflow-hidden">
+              <div className="flex items-center justify-between px-4 py-2.5 bg-[#08120F] border-b border-[#48E7A8]/15 font-mono text-[11px] text-[#71877C]">
+                <div className="flex items-center gap-2">
+                  <span className="w-2.5 h-2.5 rounded-full bg-[#15966C]/60" />
+                  <span className="w-2.5 h-2.5 rounded-full bg-[#48E7A8]/40" />
+                  <span className="w-2.5 h-2.5 rounded-full bg-[#63F0B9]/30" />
+                  <span className="ml-2 text-[#B8C7C0]">os-playground // kernel-modules</span>
+                </div>
+                <div className="hidden sm:flex items-center gap-3">
+                  <span className="text-[#48E7A8]">CLIENT-SIDE DETERMINISTIC</span>
+                  <span>ZERO LATENCY</span>
+                </div>
+              </div>
+
+              <div className="p-6 sm:p-8 bg-gradient-to-b from-[#08120F]/60 to-[#050A09] grid grid-cols-1 md:grid-cols-3 gap-4">
+                {/* Module 1: CPU Scheduling */}
+                <div className="p-4 rounded-lg bg-[#08120F] border border-[#48E7A8]/15 space-y-3">
+                  <div className="flex items-center justify-between text-[#48E7A8]">
+                    <Clock size={18} />
+                    <span className="font-mono text-[10px] text-[#71877C]">MODULE // 01</span>
+                  </div>
+                  <h4 className="font-sans font-semibold text-sm text-[#F2F5F3]">
+                    CPU Scheduling Simulator
+                  </h4>
+                  <p className="font-sans text-xs text-[#B8C7C0] leading-relaxed">
+                    Interactive SVG Gantt timeline with scrubber, preemption points, live ready queue, and full metrics (AT, BT, CT, TAT, WT, RT) for FCFS, SJF, SRTF, Round Robin &amp; Priority.
+                  </p>
+                  <div className="font-mono text-[10px] text-[#48E7A8]/80">
+                    ALGORITHMS: 5 IMPLEMENTED
+                  </div>
+                </div>
+
+                {/* Module 2: Memory Management */}
+                <div className="p-4 rounded-lg bg-[#08120F] border border-[#48E7A8]/15 space-y-3">
+                  <div className="flex items-center justify-between text-[#48E7A8]">
+                    <HardDrive size={18} />
+                    <span className="font-mono text-[10px] text-[#71877C]">MODULE // 02</span>
+                  </div>
+                  <h4 className="font-sans font-semibold text-sm text-[#F2F5F3]">
+                    Memory Management Lab
+                  </h4>
+                  <p className="font-sans text-xs text-[#B8C7C0] leading-relaxed">
+                    Contiguous allocation (First/Best/Worst Fit), MMU logical-to-physical address translation, Page Replacement (FIFO, LRU, Optimal), and Belady&apos;s anomaly interactive proof.
+                  </p>
+                  <div className="font-mono text-[10px] text-[#48E7A8]/80">
+                    PAGING &amp; SEGMENTATION: VERIFIED
+                  </div>
+                </div>
+
+                {/* Module 3: Deadlock & Processes */}
+                <div className="p-4 rounded-lg bg-[#08120F] border border-[#48E7A8]/15 space-y-3">
+                  <div className="flex items-center justify-between text-[#48E7A8]">
+                    <GitBranch size={18} />
+                    <span className="font-mono text-[10px] text-[#71877C]">MODULE // 03</span>
+                  </div>
+                  <h4 className="font-sans font-semibold text-sm text-[#F2F5F3]">
+                    Deadlock &amp; Process Lifecycle
+                  </h4>
+                  <p className="font-sans text-xs text-[#B8C7C0] leading-relaxed">
+                    Banker&apos;s Safety &amp; Request Algorithm with safe sequence derivation, Resource Allocation Graph (RAG) DFS cycle detection, and 5-state process machine with PCB register context switching.
+                  </p>
+                  <div className="font-mono text-[10px] text-[#48E7A8]/80">
+                    BANKER&apos;S &amp; RAG: ENGINE ACTIVE
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Structured Specifications */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-2">
+              <div className="space-y-2">
+                <span className="font-mono text-xs text-[#48E7A8] uppercase tracking-wider">
+                  01 / Problem Addressed
+                </span>
+                <p className="font-sans text-sm text-[#B8C7C0] leading-relaxed">
+                  Operating system concepts like scheduling starvation, external fragmentation, and deadlock safety are hard to grasp through abstract equations without hands-on visual feedback.
+                </p>
+              </div>
+
+              <div className="space-y-2">
+                <span className="font-mono text-xs text-[#48E7A8] uppercase tracking-wider">
+                  02 / Implementation
+                </span>
+                <p className="font-sans text-sm text-[#B8C7C0] leading-relaxed">
+                  Engineered with pure, deterministic TypeScript simulation cores, custom SVG timeline generators, step-by-step playback scrubbers, and strict Zod workload validation.
+                </p>
+              </div>
+
+              <div className="space-y-2">
+                <span className="font-mono text-xs text-[#48E7A8] uppercase tracking-wider">
+                  03 / Tech Stack
+                </span>
+                <div className="flex flex-wrap gap-1.5 pt-1">
+                  {['Next.js 14', 'TypeScript', 'React 18', 'Tailwind CSS', 'Vitest', 'Zod', 'SVG'].map(
+                    (tech) => (
+                      <span
+                        key={tech}
+                        className="px-2.5 py-1 rounded bg-[#050A09] border border-[#48E7A8]/20 font-mono text-[11px] text-[#F2F5F3]"
+                      >
+                        {tech}
+                      </span>
+                    )
+                  )}
+                </div>
+              </div>
+            </div>
+
+            {/* Implemented Features */}
+            <div className="pt-6 border-t border-[#48E7A8]/10">
+              <h4 className="font-mono text-xs text-[#71877C] uppercase tracking-wider mb-4">
+                // VERIFIED LABORATORY CAPABILITIES
+              </h4>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+                {[
+                  'Dynamic SVG Gantt Timeline Scrubber',
+                  'FCFS, SJF, SRTF, RR & Priority',
+                  'Contiguous Hole Splitting & Coalescing',
+                  'MMU Paging Address Translation',
+                  'Page Replacement (FIFO, LRU, Optimal)',
+                  'Belady’s Anomaly Interactive Case',
+                  'Banker’s Safety Algorithm & Sequences',
+                  'RAG Depth-First Cycle Detection',
+                ].map((feat) => (
+                  <div
+                    key={feat}
+                    className="flex items-center gap-2 p-2.5 rounded-lg bg-[#050A09]/70 border border-[#48E7A8]/10 text-xs font-sans text-[#F2F5F3]"
+                  >
+                    <CheckCircle2 size={14} className="text-[#48E7A8] shrink-0" />
+                    <span>{feat}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
 
-      {/* Interactive Preview Modal */}
-      {previewOpen && (
+      {/* Interactive Blueprint Inspection Modal */}
+      {modalProject && (
         <div
           role="dialog"
           aria-modal="true"
@@ -229,19 +473,16 @@ export default function ProjectsSection() {
         >
           <div className="relative w-full max-w-3xl rounded-xl bg-[#08120F] border border-[#48E7A8]/30 shadow-2xl overflow-hidden p-6 sm:p-8 space-y-6">
             <div className="flex items-center justify-between pb-4 border-b border-[#48E7A8]/20">
-              <div className="flex items-center gap-3">
-                <Hotel className="text-[#48E7A8]" size={22} />
-                <div>
-                  <h4 className="font-sans font-bold text-lg text-[#F2F5F3]">
-                    Elite Hotel Lucknow — UI Inspection
-                  </h4>
-                  <span className="font-mono text-xs text-[#71877C]">
-                    ARCHITECTURAL BLUEPRINT PREVIEW
-                  </span>
-                </div>
+              <div>
+                <h4 className="font-sans font-bold text-xl text-[#F2F5F3]">
+                  {modalProject.title}
+                </h4>
+                <span className="font-mono text-xs text-[#48E7A8]">
+                  {modalProject.category}
+                </span>
               </div>
               <button
-                onClick={() => setPreviewOpen(false)}
+                onClick={() => setModalProject(null)}
                 className="px-3 py-1 rounded bg-[#050A09] border border-[#48E7A8]/20 text-xs font-mono text-[#B8C7C0] hover:text-[#48E7A8]"
               >
                 Close [ESC]
@@ -249,31 +490,47 @@ export default function ProjectsSection() {
             </div>
 
             <div className="space-y-4 text-sm text-[#B8C7C0] leading-relaxed">
-              <p>
-                <strong className="text-[#F2F5F3]">Project Scope:</strong> Elite Hotel Lucknow is built to streamline the visitor experience for travelers visiting the historic city of Lucknow, Uttar Pradesh.
-              </p>
-              <div className="p-4 rounded-lg bg-[#050A09] border border-[#48E7A8]/15 font-mono text-xs space-y-2">
-                <div className="text-[#48E7A8]">// SYSTEM CHECK</div>
-                <div>PROJECT: Elite Hotel Lucknow</div>
-                <div>AUTHOR: Rajan Patel</div>
-                <div>AFFILIATION: AIMT Computer Science &amp; Engineering</div>
-                <div>STACK: HTML5, CSS3, JavaScript, Node.js</div>
-                <div>STATUS: Verified Architecture</div>
+              <p>{modalProject.scope}</p>
+
+              {/* Technical Specifications Sheet */}
+              <div className="p-4 rounded-lg bg-[#050A09] border border-[#48E7A8]/15 font-mono text-xs space-y-2.5">
+                <div className="text-[#48E7A8] font-semibold">// ARCHITECTURAL SPECIFICATION</div>
+                {modalProject.specs.map((item) => (
+                  <div key={item.label} className="flex flex-col sm:flex-row sm:justify-between gap-1 border-b border-white/[0.04] pb-1.5 last:border-none">
+                    <span className="text-[#71877C]">{item.label}:</span>
+                    <span className="text-[#F2F5F3] sm:text-right">{item.value}</span>
+                  </div>
+                ))}
               </div>
-              <p className="text-xs text-[#71877C]">
-                Source code and project assets are maintained in Rajan Patel&apos;s GitHub repository.
-              </p>
+
+              {/* Verified Stack Chips */}
+              <div>
+                <span className="font-mono text-xs text-[#71877C] uppercase block mb-2">
+                  TECHNOLOGY STACK:
+                </span>
+                <div className="flex flex-wrap gap-1.5">
+                  {modalProject.tech.map((t) => (
+                    <span
+                      key={t}
+                      className="px-2.5 py-1 rounded bg-[#050A09] border border-[#48E7A8]/25 font-mono text-xs text-[#48E7A8]"
+                    >
+                      {t}
+                    </span>
+                  ))}
+                </div>
+              </div>
             </div>
 
             <div className="pt-4 border-t border-[#48E7A8]/15 flex items-center justify-end gap-3">
               <a
-                href="https://github.com/rajanpa8989"
+                href={modalProject.repoUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-[#48E7A8] text-[#050A09] text-xs font-mono font-semibold hover:bg-[#63F0B9]"
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-[#48E7A8] text-[#050A09] text-xs font-mono font-semibold hover:bg-[#63F0B9] transition-all"
               >
                 <Github size={14} />
-                <span>Visit GitHub Profile</span>
+                <span>Visit GitHub Repository</span>
+                <ExternalLink size={12} />
               </a>
             </div>
           </div>
