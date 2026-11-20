@@ -1,0 +1,166 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg-main: #050A09;
+  --bg-secondary: #08120F;
+  --bg-forest: #0B1E18;
+  --emerald-green: #15966C;
+  --primary-mint: #48E7A8;
+  --bright-mint: #63F0B9;
+  --text-primary: #F2F5F3;
+  --text-secondary: #B8C7C0;
+  --text-muted: #71877C;
+  --technical-border: rgba(72, 231, 168, 0.15);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background-color: var(--bg-main);
+  color: var(--text-primary);
+  scroll-behavior: smooth;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #050A09;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #0B1E18;
+  border: 1px solid rgba(72, 231, 168, 0.2);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #15966C;
+}
+
+/* Subtle Engineering Grid Background */
+.engineering-grid {
+  background-size: 40px 40px;
+  background-image: 
+    linear-gradient(to right, rgba(72, 231, 168, 0.035) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(72, 231, 168, 0.035) 1px, transparent 1px);
+}
+
+.engineering-grid-dense {
+  background-size: 20px 20px;
+  background-image: 
+    linear-gradient(to right, rgba(72, 231, 168, 0.025) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(72, 231, 168, 0.025) 1px, transparent 1px);
+}
+
+/* Cinematic Emerald Radial Glow */
+.hero-emerald-glow {
+  background: radial-gradient(
+    circle at 18% 18%,
+    rgba(21, 150, 108, 0.22) 0%,
+    rgba(11, 30, 24, 0.16) 32%,
+    rgba(8, 18, 15, 0.06) 55%,
+    transparent 75%
+  );
+}
+
+.hero-emerald-glow-subtle {
+  background: radial-gradient(
+    circle at 35% 25%,
+    rgba(72, 231, 168, 0.08) 0%,
+    rgba(21, 150, 108, 0.04) 40%,
+    transparent 70%
+  );
+}
+
+/* Blueprint Corner Crosshair Marks */
+.blueprint-corner {
+  position: relative;
+}
+
+.blueprint-corner::before,
+.blueprint-corner::after {
+  content: '';
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  pointer-events: none;
+  border-color: rgba(72, 231, 168, 0.4);
+}
+
+.blueprint-corner-tl::before {
+  top: -1px;
+  left: -1px;
+  border-top: 1.5px solid rgba(72, 231, 168, 0.5);
+  border-left: 1.5px solid rgba(72, 231, 168, 0.5);
+}
+
+.blueprint-corner-tr::after {
+  top: -1px;
+  right: -1px;
+  border-top: 1.5px solid rgba(72, 231, 168, 0.5);
+  border-right: 1.5px solid rgba(72, 231, 168, 0.5);
+}
+
+.blueprint-corner-bl::before {
+  bottom: -1px;
+  left: -1px;
+  border-bottom: 1.5px solid rgba(72, 231, 168, 0.5);
+  border-left: 1.5px solid rgba(72, 231, 168, 0.5);
+}
+
+.blueprint-corner-br::after {
+  bottom: -1px;
+  right: -1px;
+  border-bottom: 1.5px solid rgba(72, 231, 168, 0.5);
+  border-right: 1.5px solid rgba(72, 231, 168, 0.5);
+}
+
+/* Subtle circuit line pulsing */
+@keyframes circuitPulse {
+  0%, 100% {
+    opacity: 0.2;
+    transform: scaleX(0.98);
+  }
+  50% {
+    opacity: 0.55;
+    transform: scaleX(1);
+  }
+}
+
+.animate-circuit-pulse {
+  animation: circuitPulse 5s ease-in-out infinite;
+}
+
+@keyframes dotPulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.6;
+  }
+  50% {
+    transform: scale(1.3);
+    opacity: 1;
+  }
+}
+
+.animate-dot-pulse {
+  animation: dotPulse 3s ease-in-out infinite;
+}
+
+/* Reduced Motion Override */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
