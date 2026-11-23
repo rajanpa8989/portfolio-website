@@ -52,7 +52,7 @@ export default function ProjectsSection() {
     category: 'FULL-STACK HOSPITALITY WEB APPLICATION',
     scope:
       'A modern hospitality platform built to streamline room reservations, amenity exploration, and local inquiry management for visitors arriving in the historic city of Lucknow.',
-    repoUrl: 'https://github.com/rajanpa8989',
+    repoUrl: 'https://github.com/rajanpa8989/Elite-hote-',
     tech: ['React', 'JavaScript', 'Node.js', 'HTML5', 'CSS3', 'Git'],
     specs: [
       { label: 'ARCHITECTURE', value: 'Modular full-stack web application' },
@@ -120,7 +120,7 @@ export default function ProjectsSection() {
               {/* Action Links */}
               <div className="flex items-center gap-3 self-start md:self-center shrink-0">
                 <a
-                  href="https://github.com/rajanpa8989"
+                  href="https://github.com/rajanpa8989/Elite-hote-"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-[#050A09] border border-[#48E7A8]/30 text-xs font-mono text-[#F2F5F3] hover:text-[#48E7A8] hover:border-[#48E7A8] transition-all"
